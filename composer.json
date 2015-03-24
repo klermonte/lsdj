@@ -1,0 +1,21 @@
+{
+    "name": "klermonte/LTools",
+    "authors": [
+        {
+            "name": "Paul Klementyev",
+            "email": "klimchek@gmail.com"
+        }
+    ],
+    "require": {
+        "klermonte/zerg": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "LTools\\": "src/LTools"
+        }
+    }
+
+}

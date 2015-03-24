@@ -1,0 +1,22 @@
+{
+    "startSkip": {
+        "type": "padding",
+        "size": 262144
+    },
+    "header": {
+        "fileNames": {
+            "type": "string",
+            "size": 8,
+            "options": {
+                "count": 32
+            }
+        },
+        "fileVersions": [
+            "int",
+            "byte",
+            {
+                "count": 32
+            }
+        ]
+    }
+}
