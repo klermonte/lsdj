@@ -128,14 +128,14 @@ class FilePack
                     $count = ord($compressedData[$i]);
                     $i ++;
 
-                    $rawData .= str_pad('', $count, self::$defaultWave);
+                    $rawData .= str_pad('', $count * strlen(self::$defaultWave), self::$defaultWave);
 
                 } elseif ($currentByte == self::$defaultInstrByte) {
 
                     $count = ord($compressedData[$i]);
                     $i ++;
 
-                    $rawData .= str_pad('', $count, self::$defaultInstr);
+                    $rawData .= str_pad('', $count * strlen(self::$defaultInstr), self::$defaultInstr);
 
                 } elseif ($currentByte == self::$eofByte) {
                     throw new \Exception('Unexpected eof byte');
