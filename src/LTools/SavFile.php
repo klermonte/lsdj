@@ -13,18 +13,7 @@ class SavFile
     {
         $stream = new FileStream($fileName);
 
-        $mainSchema = new Collection([
-            ['padding', 0x8000 * 8],
-            'header' => [
-                'fileNames' => ['string', 8, ['count' => 0x20]],
-                'fileVersions' => ['int', 'byte', ['count' => 0x20]],
-                ['padding', 30 * 8],
-                'sRamInitCheck' => ['string', 2],
-                'activeFile' => ['int', 'byte'],
-                'blockToFile' => ['int', 'byte', ['count' => 191]]
-            ],
-            'blocks' => ['string', 0x200, ['count' => 191]]
-        ]);
+        $mainSchema = new Collection(Schema::getFileManagement());
 
         $this->songFiles = $this->fillSongFiles($mainSchema->parse($stream));
     }
