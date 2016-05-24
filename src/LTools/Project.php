@@ -19,7 +19,7 @@ class Project
     public function __construct($rawData)
     {
         $stream = new StringStream($rawData);
-        $this->data = $this->getSchema()->parse($stream)->getData();
+        $this->data = $this->getSchema()->parse($stream);
     }
 
     /**

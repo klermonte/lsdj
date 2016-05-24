@@ -15,7 +15,9 @@ class SavFile
 
         $mainSchema = new Collection(Schema::getFileManagement());
 
-        $this->songFiles = $this->fillSongFiles($mainSchema->parse($stream));
+        $packed = $mainSchema->parse($stream);
+
+        $this->songFiles = $this->fillSongFiles($packed);
     }
 
     /**

@@ -109,8 +109,8 @@ class Schema
 
             /* 5 */
             'vibrato'          => [
-                'direction'        => ['enum', 1, ['values' => ['down', 'up']]],
-                'type'             => ['enum', 2, ['values' => ['hf', 'sawtooth', 'sine', 'square']]],
+                'direction'        => ['enum', 1, ['down', 'up']],
+                'type'             => ['enum', 2, ['hf', 'sawtooth', 'sine', 'square']],
             ],
             'automate_2'       => ['int', 1],
             'automate'         => ['int', 1],
@@ -122,9 +122,9 @@ class Schema
             ['padding', 2],
 
             /* 7 */
-            'pan'              => ['enum', 2, ['values' => ['Invalid', 'L', 'R', 'LR']]],
+            'pan'              => ['enum', 2, ['Invalid', 'L', 'R', 'LR']],
             'phase_finetune'   => ['int', 'nibble'],
-            'wave'             => ['enum', 2, ['values' => ['12.5%', '25%', '50%', '75%']]],
+            'wave'             => ['enum', 2, ['12.5%', '25%', '50%', '75%']],
 
             /* 8 - 15 */
             ['padding', 8 * 8],
@@ -136,7 +136,7 @@ class Schema
         return [
             /* 1 */
             ['padding', 5],
-            'volume'           => ['enum', 2, ['values' => [0, 3, 2, 1]]],
+            'volume'           => ['enum', 2, [0, 3, 2, 1]],
             ['padding', 1],
 
             /* 2 */
@@ -148,8 +148,8 @@ class Schema
 
             /* 5 */
             'vibrato'          => [
-                'direction'        => ['enum', 1, ['values' => ['down', 'up']]],
-                'type'             => ['enum', 2, ['values' => ['hf', 'sawtooth', 'sine', 'square']]],
+                'direction'        => ['enum', 1, ['down', 'up']],
+                'type'             => ['enum', 2, ['hf', 'sawtooth', 'sine', 'square']],
             ],
             'automate_2'       => ['int', 1],
             'automate'         => ['int', 1],
@@ -161,14 +161,14 @@ class Schema
             ['padding', 2],
 
             /* 7 */
-            'pan'              => ['enum', 2, ['values' => ['Invalid', 'L', 'R', 'LR']]],
+            'pan'              => ['enum', 2, ['Invalid', 'L', 'R', 'LR']],
             ['padding', 6],
 
             /* 8 */
             ['padding', 8],
 
             /* 9 */
-            'play_type'        => ['enum', 2, ['values' => ['once', 'loop', 'ping-pong', 'manual']]],
+            'play_type'        => ['enum', 2, ['once', 'loop', 'ping-pong', 'manual']],
             ['padding', 6],
 
             /* 10 - 13 */
@@ -201,8 +201,8 @@ class Schema
 
             /* 5 */
             'vibrato'          => [
-                'direction'        => ['enum', 1, ['values' => ['down', 'up']]],
-                'type'             => ['enum', 2, ['values' => ['hf', 'sawtooth', 'sine', 'square']]],
+                'direction'        => ['enum', 1, ['down', 'up']],
+                'type'             => ['enum', 2, ['hf', 'sawtooth', 'sine', 'square']],
             ],
             'automate_2'       => ['int', 1],
             'automate'         => ['int', 1],
@@ -216,7 +216,7 @@ class Schema
             ['padding', 2],
 
             /* 7 */
-            'pan'              => ['enum', 2, ['values' => ['Invalid', 'L', 'R', 'LR']]],
+            'pan'              => ['enum', 2, ['Invalid', 'L', 'R', 'LR']],
             ['padding', 6],
 
             /* 8 */
@@ -228,12 +228,12 @@ class Schema
             'keep_attack_2'    => ['int', 1],
 
             /* 10 */
-            'dist_type'        => ['enum', 8, ['values' => [
+            'dist_type'        => ['enum', 8, [
                 0xd0 => 'clip',
                 0xd1 => 'shape',
                 0xd2 => 'shap2',
                 0xd3 => 'wrap'
-            ]]],
+            ]],
 
             /* 11 */
             'length_2'         => ['int', 'byte'],
@@ -256,7 +256,7 @@ class Schema
             'envelope'         => ['int', 'byte'],
 
             /* 2 */
-            's_cmd'            => ['enum', 8, ['values' => ['free', 'stable']]],
+            's_cmd'            => ['enum', 8, ['free', 'stable']],
 
             /* 3 */
             'sound_length'     => ['int', 6],
@@ -278,7 +278,7 @@ class Schema
             ['padding', 2],
 
             /* 7 */
-            'pan'              => ['enum', 2, ['values' => ['Invalid', 'L', 'R', 'LR']]],
+            'pan'              => ['enum', 2, ['Invalid', 'L', 'R', 'LR']],
             ['padding', 6],
 
             /* 8 - 15 */
@@ -289,16 +289,15 @@ class Schema
     public static function getInstruments()
     {
         return [
-            'type' => ['enum', 'byte', ['values' => ['pulse', 'wave', 'kit', 'noise'], 'default' => 'invalid']],
+            'type' => ['enum', 'byte', ['pulse', 'wave', 'kit', 'noise'], ['default' => 'invalid']],
             'data' => ['conditional', './type', [
-                'fields' => [
                     'pulse'   => self::getPulseInstrument(),
                     'wave'    => self::getVaweInstrument(),
                     'kit'     => self::getKitInstrument(),
                     'noise'   => self::getNoiseInstrument(),
                     'invalid' => [['padding', 15 * 8]]
                 ]
-            ]]
+            ]
         ];
     }
 
@@ -328,7 +327,7 @@ class Schema
     public static function getWord()
     {
         return [
-            'allophone' => ['enum', 'byte', ['values' => [
+            'allophone' => ['enum', 'byte', [
                 0 => '-',
                 1 => 'AA',
                 2 => 'AE',
@@ -389,84 +388,63 @@ class Schema
                 57 => 'YY2',
                 58 => 'ZH',
                 59 => 'ZZ'
-            ]]],
+            ]],
             'length' => ['int', 'byte']
         ];
     }
 
     public static function getTableCommand()
     {
+        $values = [
+            0  => '-', 1  => 'A', 2  => 'C', 3  => 'D', 4  => 'E', 5  => 'F', 6  => 'G', 7  => 'H', 8  => 'K', 9 => 'L',
+            10 => 'M', 11 => 'O', 12 => 'P', 13 => 'R', 14 => 'S', 15 => 'T', 16 => 'V', 17 => 'W', 18 => 'Z'
+        ];
+
         return [
-            'fx' => ['enum', 'byte', ['values' => [
-                0 => '-',
-                1 => 'A',
-                2 => 'C',
-                3 => 'D',
-                4 => 'E',
-                5 => 'F',
-                6 => 'G',
-                7 => 'H',
-                8 => 'K',
-                9 => 'L',
-                10 => 'M',
-                11 => 'O',
-                12 => 'P',
-                13 => 'R',
-                14 => 'S',
-                15 => 'T',
-                16 => 'V',
-                17 => 'W',
-                18 => 'Z'
-            ], 'count' => [self::NUM_TABLES, self::STEPS_PER_TABLE]]],
-            'val' => ['int', 'byte', ['count' => [self::NUM_TABLES, self::STEPS_PER_TABLE]]]
+            'fx'  => ['arr', self::NUM_TABLES, ['arr', self::STEPS_PER_TABLE, ['enum', 'byte', $values]]],
+            'val' => ['arr', self::NUM_TABLES, ['arr', self::STEPS_PER_TABLE, ['int',  'byte']]],
         ];
     }
 
     public static function getSong()
     {
         return [
-            'phrase_notes'       => ['enum', 'byte', [
-                'values' => self::getNotes(),
-                'count'  => [self::NUM_PHRASES, self::STEPS_PER_PHRASE]
-            ]],
-            'bookmarks'          => ['int', 'byte', ['count' => self::NUM_BOOKMARKS]],
-            ['padding', 96 * 8],
-            'grooves'            => ['int', 'byte', ['count' => [self::NUM_GROOVES,  self::STEPS_PER_GROOVE]]],
-            'song'               => ['collection', self::getChain(), ['count' => self::NUM_SONG_CHAINS]],
-            'table_envelopes'    => ['int', 'byte', ['count' => [self::NUM_TABLES,  self::STEPS_PER_TABLE]]],
-            'words'              => ['collection', self::getWord(), ['count' => [self::NUM_WORDS, self::WORD_LENGTH]]],
-            'word_names'         => ['string', 4, ['count' => self::NUM_WORDS]],
-            // Set to 'rb' on init
-            'mem_init_flag_1'    => ['string', 2],
-            'instrument_names'   => ['string', 5, ['count' => self::NUM_INSTRUMENTS]],
-            ['padding', 102 * 8],
-            'table_alloc_table'  => ['int', 'byte', ['count' => self::NUM_TABLES]],
-            'instr_alloc_table'  => ['int', 'byte', ['count' => self::NUM_INSTRUMENTS]],
-            'chain_phrases'      => ['int', 'byte', ['count' => [self::NUM_CHAINS, self::PHRASES_PER_CHAIN]]],
-            'chain_transposes'   => ['int', 'byte', ['count' => [self::NUM_CHAINS, self::PHRASES_PER_CHAIN]]],
-            'instruments'        => ['collection', self::getInstruments(), ['count' => self::NUM_INSTRUMENTS]],
-            'table_transposes'   => ['int', 'byte', ['count' => [self::NUM_TABLES, self::STEPS_PER_TABLE]]],
+            'phrase_notes'       => ['arr', self::NUM_PHRASES, ['arr', self::STEPS_PER_PHRASE, ['enum', 'byte', self::getNotes()]]],
+            'bookmarks'          => ['arr', self::NUM_BOOKMARKS, ['int', 'byte']],
+                                    ['padding', 96 * 8],
+            'grooves'            => ['arr', self::NUM_GROOVES, ['arr', self::STEPS_PER_GROOVE, ['int',  'byte']]],
+            'song'               => ['arr', self::NUM_SONG_CHAINS, self::getChain()],
+            'table_envelopes'    => ['arr', self::NUM_TABLES, ['arr', self::STEPS_PER_TABLE, ['int',  'byte']]],
+            'words'              => ['arr', self::NUM_WORDS, ['arr', self::WORD_LENGTH, self::getWord()]],
+            'word_names'         => ['arr', self::NUM_WORDS, ['string', 4 * 8]],
+            'mem_init_flag_1'    => ['string', 2 * 8], // Set to 'rb' on init
+            'instrument_names'   => ['arr', self::NUM_INSTRUMENTS, ['string', 5 * 8]],
+                                    ['padding', 102 * 8],
+            'table_alloc_table'  => ['arr', self::NUM_TABLES, ['int',  'byte']],
+            'instr_alloc_table'  => ['arr', self::NUM_INSTRUMENTS, ['int',  'byte']],
+            'chain_phrases'      => ['arr', self::NUM_CHAINS, ['arr', self::PHRASES_PER_CHAIN, ['int',  'byte']]],
+            'chain_transposes'   => ['arr', self::NUM_CHAINS, ['arr', self::PHRASES_PER_CHAIN, ['int',  'byte']]],
+            'instruments'        => ['arr', self::NUM_INSTRUMENTS, self::getInstruments()],
+            'table_transposes'   => ['arr', self::NUM_TABLES, ['arr', self::STEPS_PER_TABLE, ['int',  'byte']]],
             'table_cmd1'         => self::getTableCommand(),
             'table_cmd2'         => self::getTableCommand(),
-            // Set to 'rb' on init
-            'mem_init_flag_2'    => ['string', 2],
+            'mem_init_flag_2'    => ['string', 2 * 8], // Set to 'rb' on init
         ];
     }
 
     public static function getFileManagement()
     {
         return [
-            ['padding', 0x8000 * 8],
+                        ['padding', 0x8000 * 8],
             'header' => [
-                'fileNames' => ['string', 8, ['count' => 32]],
-                'fileVersions' => ['int', 'byte', ['count' => 32]],
-                ['padding', 30 * 8],
-                // Set to 'jk' on init
-                'sRamInitCheck' => ['string', 2],
-                'activeFile' => ['int', 'byte'],
-                'blockToFile' => ['int', 'byte', ['count' => 191]]
+                'fileNames'     => ['arr', 32, ['string', 8 * 8]],
+                'fileVersions'  => ['arr', 32, ['int', 'byte']],
+                                   ['padding', 30 * 8],
+                'sRamInitCheck' => ['string', 2 * 8], // Set to 'jk' on init
+                'activeFile'    => ['int', 'byte'],
+                'blockToFile'   => ['arr', 191, ['int', 'byte']]
             ],
-            'blocks' => ['string', 512, ['count' => 191]]
+            'blocks' => ['arr', 191, ['string', 512 * 8]]
         ];
     }
 }
